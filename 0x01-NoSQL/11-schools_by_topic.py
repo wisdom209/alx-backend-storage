@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+"""return a doc list"""
 
 
 def schools_by_topic(mongo_collection, topic):
