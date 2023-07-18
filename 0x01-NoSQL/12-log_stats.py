@@ -15,7 +15,7 @@ if __name__ == "__main__":
     delete = nginx_collection.count_documents({"method": "DELETE"})
     status_check = nginx_collection.count_documents({"path": "/status"})
 
-    print(f"{logs} logs", end="")
+    print(f"{logs} logs")
     print(f"""
     Methods:
         method GET: {get}
@@ -24,4 +24,4 @@ if __name__ == "__main__":
         method PATCH: {patch}
         method DELETE: {patch}
     {status_check} status check
-    """, end="")
+    """)
