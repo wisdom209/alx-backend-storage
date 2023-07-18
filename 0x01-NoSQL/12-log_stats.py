@@ -21,5 +21,5 @@ if __name__ == "__main__":
     print(f"\tmethod POST: {post}")
     print(f"\tmethod PUT: {put}")
     print(f"\tmethod PATCH: {patch}")
-    print(f"\tmethod DELETE: {patch}")
+    print(f"\tmethod DELETE: {delete}")
     print(f"{status_check} status check")
