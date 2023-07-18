@@ -16,7 +16,7 @@ if __name__ == "__main__":
     status_check = nginx_collection.count_documents({"path": "/status"})
 
     print(f"{logs} logs")
-    print("Methods")
+    print("Methods:")
     print(f"\tmethod GET: {get}")
     print(f"\tmethod POST: {post}")
     print(f"\tmethod PUT: {put}")
