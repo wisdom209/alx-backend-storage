@@ -1,4 +1,4 @@
 // insert a document in collection school
 
-my_db.createCollection("school")
-school.insertOne({name: "Holberton School"})
+db.createCollection("school")
+db.school.insertOne({name: "Holberton School"})
