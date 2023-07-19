@@ -21,8 +21,6 @@ class Cache:
 
     def get(self, key: str, fn: Optional[Callable]) -> Union[str, bytes, int, float]:
         """read from redis"""
-        if key is None:
-            return None
         value = self._redis.get(key)
         if fn:
             value = fn(value)
