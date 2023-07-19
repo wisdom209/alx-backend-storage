@@ -19,7 +19,8 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable]) -> Union[str, bytes, int, float]:
+    def get(self, key: str,
+            fn: Optional[Callable]) -> Union[str, bytes, int, float]:
         """read from redis"""
         value = self._redis.get(key)
         if fn:
@@ -34,7 +35,4 @@ class Cache:
     def get_int(self, key: str) -> int:
         """parametrize cache.get"""
         value = self._redis.get(key)
-        try:
-            return int(value.decode('utf-8'))
-        except Exception:
-            return 0
+        return value.decode('utf-8')
