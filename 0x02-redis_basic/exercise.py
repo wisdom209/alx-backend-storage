@@ -6,6 +6,29 @@ from typing import Union, Optional, Callable
 from functools import wraps
 
 
+def replay(fn: Callable):
+    '''display the history of calls of a particular function.'''
+    r = redis.Redis()
+    func_name = fn.__qualname__
+    c = r.get(func_name)
+    try:
+        c = int(c.decode("utf-8"))
+    except Exception:
+        c = 0
+    print("{} was called {} times:".format(func_name, c))
+    inputs = r.lrange("{}:inputs".format(func_name), 0, -1)
+    outputs = r.lrange("{}:outputs".format(func_name), 0, -1)
+    for inp, outp in zip(inputs, outputs):
+        try:
+            inp = inp.decode("utf-8")
+        except Exception:
+            inp = ""
+        try:
+            outp = outp.decode("utf-8")
+        except Exception:
+            outp = ""
+        print("{}(*{}) -> {}".format(func_name, inp, outp))
+        
 def count_calls(fn: Callable) -> Callable:
     """count calls"""
     key = fn.__qualname__
