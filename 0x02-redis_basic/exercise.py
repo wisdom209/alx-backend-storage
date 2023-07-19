@@ -28,7 +28,8 @@ def replay(fn: Callable):
         except Exception:
             outp = ""
         print("{}(*{}) -> {}".format(func_name, inp, outp))
-        
+
+
 def count_calls(fn: Callable) -> Callable:
     """count calls"""
     key = fn.__qualname__
@@ -39,6 +40,7 @@ def count_calls(fn: Callable) -> Callable:
         self._redis.incr(key)
         return fn(self, *args, **kwargs)
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     '''store the history of inputs and outputs for a particular function'''
@@ -70,7 +72,7 @@ class Cache:
         return key
 
     def get(self, key: str,
-            fn: Optional[Callable]=None) -> Union[str, bytes, int, float]:
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
         """read from redis"""
         value = self._redis.get(key)
         if fn:
